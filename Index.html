@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Zeena ❤️</title>
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+  height:100vh;
+  background: radial-gradient(circle at bottom, #0b0014, #000);
+  overflow:hidden;
+  color:white;
+}
+
+/* Password Screen */
+#lockScreen{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  z-index:10;
+}
+
+#lockScreen input{
+  padding:12px 18px;
+  border:none;
+  border-radius:25px;
+  outline:none;
+  font-size:16px;
+  margin-top:15px;
+}
+
+#lockScreen button{
+  margin-top:15px;
+  padding:10px 25px;
+  border:none;
+  border-radius:25px;
+  background:#ff2d75;
+  color:white;
+  cursor:pointer;
+  font-size:16px;
+}
+
+/* Main Content */
+.container{
+  text-align:center;
+  position:relative;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:2;
+}
+
+h1{
+  font-size:3.2rem;
+  color:#ff5fa2;
+  text-shadow:0 0 20px #ff2d75;
+  animation: glow 2s infinite alternate;
+}
+
+h2{
+  margin-top:15px;
+  font-weight:300;
+}
+
+p{
+  margin-top:20px;
+  font-size:1.2rem;
+  opacity:0.9;
+}
+
+/* Heart */
+.heart{
+  position:absolute;
+  width:20px;
+  height:20px;
+  background:red;
+  transform:rotate(45deg);
+  animation: float 6s linear infinite;
+}
+
+.heart::before,
+.heart::after{
+  content:"";
+  position:absolute;
+  width:20px;
+  height:20px;
+  background:red;
+  border-radius:50%;
+}
+
+.heart::before{
+  top:-10px;
+  left:0;
+}
+
+.heart::after{
+  left:-10px;
+  top:0;
+}
+
+/* Fireworks */
+.firework{
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:transparent;
+  border-radius:50%;
+  box-shadow:
+    0 0 #ff0,
+    0 0 #ff4d4d,
+    0 0 #4dff4d,
+    0 0 #4dd2ff;
+  animation: explode 1.5s infinite;
+}
+
+@keyframes glow{
+  from{ text-shadow:0 0 10px #ff2d75;}
+  to{ text-shadow:0 0 30px #ff9fcf;}
+}
+
+@keyframes float{
+  0%{ bottom:-10%; opacity:1;}
+  100%{ bottom:110%; opacity:0;}
+}
+
+@keyframes explode{
+  0%{ transform:scale(0); opacity:1;}
+  100%{ transform:scale(1.8); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Password -->
+<div id="lockScreen">
+  <h2>Enter Password 💖</h2>
+  <input type="password" id="pass" placeholder="Password">
+  <button onclick="unlock()">Open</button>
+</div>
+
+<!-- Main -->
+<div class="container">
+  <h1>Happy Birthday Zeena 🎂❤️</h1>
+  <h2>You are my favorite miracle ✨</h2>
+  <p>
+    Every heartbeat of mine whispers your name.  
+    May your day shine brighter than fireworks 🎆  
+    and your life be filled with endless love 💕
+  </p>
+</div>
+
+<script>
+/* Password */
+function unlock(){
+  const p = document.getElementById("pass").value;
+  if(p === "love123"){
+    document.getElementById("lockScreen").style.display="none";
+  }else{
+    alert("Wrong Password 💔");
+  }
+}
+
+/* Hearts */
+for(let i=0;i<25;i++){
+  let h=document.createElement("div");
+  h.className="heart";
+  h.style.left=Math.random()*100+"%";
+  h.style.animationDuration=3+Math.random()*4+"s";
+  h.style.opacity=Math.random();
+  document.body.appendChild(h);
+}
+
+/* Fireworks */
+setInterval(()=>{
+  let f=document.createElement("div");
+  f.className="firework";
+  f.style.left=Math.random()*100+"%";
+  f.style.top=Math.random()*60+"%";
+  document.body.appendChild(f);
+  setTimeout(()=>f.remove(),1500);
+},400);
+</script>
+
+</body>
+</html>
